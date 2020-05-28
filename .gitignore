@@ -1,0 +1,18 @@
+# IntelliJ
+.idea/
+.iml
+
+# Gradle
+.gradle/
+/build/
+*/build/
+
+
+# Python
+*.py[cod]
+__pycache__/
+
+*.egg-info/
+
+clojure-dist/beakerx/kernel/*
+clojure-dist/dist
