@@ -14,12 +14,12 @@
 
 from ._version import version_info, __version__
 
-from .commands import parse
+from .commands import parse_clojure
 
 
 def run():
     try:
-        parse()
+        parse_clojure()
     except KeyboardInterrupt:
         return 130
     return 0

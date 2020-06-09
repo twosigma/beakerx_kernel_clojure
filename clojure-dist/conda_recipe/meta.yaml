@@ -1,4 +1,4 @@
-{% set name = "beakerx-kernel-clojure" %}
+{% set name = "beakerx_kernel_clojure" %}
 {% set version = "1.6.0" %}
 
 package:
@@ -17,7 +17,7 @@ build:
   number: 1
   script: pip install --no-deps .
   entry_points:
-  - beakerx-kernel-clojure = beakerx:run
+  - beakerx_kernel_clojure = beakerx_clojure:run
 
 requirements:
   build:
