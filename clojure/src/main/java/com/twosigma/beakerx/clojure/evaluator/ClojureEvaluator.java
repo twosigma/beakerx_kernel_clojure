@@ -32,6 +32,7 @@ import com.twosigma.beakerx.evaluator.ClasspathScanner;
 import com.twosigma.beakerx.evaluator.JobDescriptor;
 import com.twosigma.beakerx.evaluator.TempFolderFactory;
 import com.twosigma.beakerx.evaluator.TempFolderFactoryImpl;
+import com.twosigma.beakerx.inspect.Inspect;
 import com.twosigma.beakerx.jvm.object.EvaluationObject;
 import com.twosigma.beakerx.jvm.threads.BeakerCellExecutor;
 import com.twosigma.beakerx.jvm.threads.CellExecutor;
@@ -67,13 +68,28 @@ public class ClojureEvaluator extends BaseEvaluator {
                           EvaluatorParameters evaluatorParameters,
                           BeakerXClient beakerxClient,
                           MagicCommandAutocompletePatterns autocompletePatterns,
-                          ClasspathScanner classpathScanner) {
-    super(id, sId, cellExecutor, tempFolderFactory, evaluatorParameters, beakerxClient, autocompletePatterns, classpathScanner);
+                          ClasspathScanner classpathScanner,
+                          Inspect inspect) {
+    super(id,
+            sId,
+            cellExecutor,
+            tempFolderFactory,
+            evaluatorParameters,
+            beakerxClient,
+            autocompletePatterns,
+            classpathScanner,
+            inspect);
     requirements = new ArrayList<>();
     init();
   }
 
-  public ClojureEvaluator(String id, String sId, EvaluatorParameters evaluatorParameters, BeakerXClient beakerxClient, MagicCommandAutocompletePatterns autocompletePatterns, ClasspathScanner classpathScanner) {
+  public ClojureEvaluator(String id,
+                          String sId,
+                          EvaluatorParameters evaluatorParameters,
+                          BeakerXClient beakerxClient,
+                          MagicCommandAutocompletePatterns autocompletePatterns,
+                          ClasspathScanner classpathScanner,
+                          Inspect inspect) {
     this(id,
             sId,
             new BeakerCellExecutor("clojure"),
@@ -81,7 +97,8 @@ public class ClojureEvaluator extends BaseEvaluator {
             evaluatorParameters,
             beakerxClient,
             autocompletePatterns,
-            classpathScanner);
+            classpathScanner,
+            inspect);
   }
 
   @Override

@@ -26,6 +26,7 @@ import com.twosigma.beakerx.NamespaceClient;
 import com.twosigma.beakerx.RuntimetoolsMock;
 import com.twosigma.beakerx.clojure.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.clojure.evaluator.ClojureEvaluator;
+import com.twosigma.beakerx.evaluator.BxInspectMock;
 import com.twosigma.beakerx.evaluator.ClasspathScannerMock;
 import com.twosigma.beakerx.kernel.BxKernelRunner;
 import com.twosigma.beakerx.kernel.CloseKernelAction;
@@ -72,7 +73,8 @@ public class ClojureAutotranslationTest extends KernelSetUpFixtureTest {
             KERNEL_PARAMETERS,
             nc,
             commandConfiguration.patterns(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
     return new Clojure(sessionId,
             evaluator,
             new Configuration(

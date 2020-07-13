@@ -24,6 +24,7 @@ import com.twosigma.beakerx.NamespaceClient;
 import com.twosigma.beakerx.clojure.evaluator.ClojureEvaluator;
 import com.twosigma.beakerx.clojure.handlers.ClojureCommOpenHandler;
 import com.twosigma.beakerx.clojure.handlers.ClojureKernelInfoHandler;
+import com.twosigma.beakerx.evaluator.BxInspect;
 import com.twosigma.beakerx.evaluator.ClasspathScannerImpl;
 import com.twosigma.beakerx.evaluator.Evaluator;
 import com.twosigma.beakerx.handler.KernelHandler;
@@ -90,7 +91,8 @@ public class Clojure extends Kernel {
               getKernelParameters(),
               namespaceClient,
               magicConfiguration.patterns(),
-              new ClasspathScannerImpl());
+              new ClasspathScannerImpl(),
+              new BxInspect(BxInspect.getInspectFile()));
       return new Clojure(id,
               evaluator,
               new Configuration(
