@@ -1,6 +1,7 @@
 package com.twosigma.beakerx.clojure.evaluator;
 
 import com.twosigma.beakerx.evaluator.BaseEvaluator;
+import com.twosigma.beakerx.evaluator.BxInspectMock;
 import com.twosigma.beakerx.evaluator.ClasspathScannerMock;
 import com.twosigma.beakerx.evaluator.EvaluatorBaseTest;
 import com.twosigma.beakerx.evaluator.EvaluatorTest;
@@ -26,7 +27,8 @@ public class ClojureEvaluatorTest extends EvaluatorBaseTest {
             KERNEL_PARAMETERS,
             new EvaluatorTest.BeakexClientTestImpl(),
             new MagicCommandAutocompletePatternsMock(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
   }
 
   @AfterClass
@@ -43,7 +45,8 @@ public class ClojureEvaluatorTest extends EvaluatorBaseTest {
             KERNEL_PARAMETERS,
             new EvaluatorTest.BeakexClientTestImpl(),
             new MagicCommandAutocompletePatternsMock(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
   }
 
   @Override
@@ -55,7 +58,8 @@ public class ClojureEvaluatorTest extends EvaluatorBaseTest {
             KERNEL_PARAMETERS,
             new EvaluatorTest.BeakexClientTestImpl(),
             new MagicCommandAutocompletePatternsMock(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
   }
 
   @Override

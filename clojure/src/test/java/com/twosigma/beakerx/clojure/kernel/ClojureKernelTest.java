@@ -23,6 +23,7 @@ import com.twosigma.beakerx.KernelTest;
 import com.twosigma.beakerx.RuntimetoolsMock;
 import com.twosigma.beakerx.clojure.MagicCommandConfigurationMock;
 import com.twosigma.beakerx.clojure.evaluator.ClojureEvaluator;
+import com.twosigma.beakerx.evaluator.BxInspectMock;
 import com.twosigma.beakerx.evaluator.ClasspathScannerMock;
 import com.twosigma.beakerx.evaluator.EvaluatorTest;
 import com.twosigma.beakerx.evaluator.SimpleEvaluationObjectFactory;
@@ -72,7 +73,8 @@ public class ClojureKernelTest extends KernelExecutionTest {
             KERNEL_PARAMETERS,
             new EvaluatorTest.BeakexClientTestImpl(),
             magicCommandConfiguration.patterns(),
-            new ClasspathScannerMock());
+            new ClasspathScannerMock(),
+            new BxInspectMock());
     return new Clojure(sessionId,
             evaluator,
             new Configuration(

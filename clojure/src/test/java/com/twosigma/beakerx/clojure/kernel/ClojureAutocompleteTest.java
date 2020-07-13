@@ -18,6 +18,7 @@ package com.twosigma.beakerx.clojure.kernel;
 
 import com.twosigma.beakerx.autocomplete.AutocompleteResult;
 import com.twosigma.beakerx.clojure.evaluator.ClojureEvaluator;
+import com.twosigma.beakerx.evaluator.BxInspectMock;
 import com.twosigma.beakerx.evaluator.ClasspathScannerMock;
 import com.twosigma.beakerx.evaluator.EvaluatorTest;
 import com.twosigma.beakerx.evaluator.MagicCommandAutocompletePatternsMock;
@@ -44,7 +45,8 @@ public class ClojureAutocompleteTest {
             KERNEL_PARAMETERS,
             new EvaluatorTest.BeakexClientTestImpl(),
             new MagicCommandAutocompletePatternsMock(),
-            new ClasspathScannerMock()
+            new ClasspathScannerMock(),
+            new BxInspectMock()
     );
   }
 
