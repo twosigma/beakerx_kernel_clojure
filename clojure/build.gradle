@@ -25,17 +25,7 @@ ext.kernelIdName = 'clojure'
 mainClassName = 'com.twosigma.beakerx.clojure.kernel.Clojure'
 
 configurations {
-    provided
-}
-
-sourceSets {
-    main {
-        compileClasspath += configurations.provided
-    }
-    test {
-        compileClasspath += configurations.provided
-        runtimeClasspath += configurations.provided
-    }
+    runtimetools
 }
 
 repositories {
@@ -46,6 +36,8 @@ dependencies {
     compile group: "com.twosigma", name: "beakerx-kernel-base", version: "$beakerxVersion"
     compile group: 'org.clojure', name: 'clojure', version: '1.9.0'
     compile group: 'com.cemerick', name: 'pomegranate', version: '0.3.1'
+
+    runtimetools group: "com.twosigma", name: "beakerx-runtimetools", version: "$beakerxVersion"
 
     testCompile group: "com.twosigma", name: "beakerx-kernel-base-test", version: "$beakerxVersion"
 }
@@ -83,3 +75,11 @@ task copyStaticContent(type: Copy) {
 
 jar.finalizedBy copyDependencies
 jar.finalizedBy copyStaticContent
+
+task copyRuntimetools(type: Copy) {
+    from configurations.runtimetools
+    from jar
+    into new File('../clojure-dist/beakerx_clojure/kernel/', 'ext')
+    include 'beakerx-runtimetools*.jar'
+}
+jar.finalizedBy copyRuntimetools
