@@ -4,5 +4,6 @@
   ],
   "display_name": "Clojure",
   "language": "clojure",
-  "env": { "PS1":"clojure>"}
+  "env": { "PS1":"clojure>"},
+  "interrupt_mode": "message"
 }

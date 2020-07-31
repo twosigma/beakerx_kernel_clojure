@@ -17,6 +17,7 @@ package com.twosigma.beakerx.clojure.evaluator;
 
 import com.twosigma.beakerx.TryResult;
 import com.twosigma.beakerx.jvm.object.EvaluationObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -50,20 +51,27 @@ class ClojureCodeRunner implements Callable<TryResult> {
         either = TryResult.createError("Object: " + o.getClass() + ", value cannot be displayed due to following error: " + e.getMessage());
       }
     } catch (Throwable e) {
-      if (e instanceof InterruptedException || e instanceof InvocationTargetException || e instanceof ThreadDeath) {
-        either = TryResult.createError(INTERUPTED_MSG);
-      } else {
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        if (null != e.getCause()) {
-          e.getCause().printStackTrace(pw);
-        } else {
-          e.printStackTrace(pw);
-        }
-        either = TryResult.createError(sw.toString());
-      }
+      either = handleError(e);
     } finally {
       theOutput.setOutputHandler();
+    }
+    return clojureEvaluator.processResult(either);
+  }
+
+  @NotNull
+  private TryResult handleError(Throwable e) {
+    TryResult either;
+    if (e instanceof InterruptedException || e instanceof InvocationTargetException || e instanceof ThreadDeath) {
+      either = TryResult.createError(INTERUPTED_MSG);
+    } else {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      if (null != e.getCause()) {
+        e.getCause().printStackTrace(pw);
+      } else {
+        e.printStackTrace(pw);
+      }
+      either = TryResult.createError(sw.toString());
     }
     return either;
   }
