@@ -84,7 +84,7 @@ public class Clojure extends Kernel {
       KernelSocketsFactoryImpl kernelSocketsFactory = new KernelSocketsFactoryImpl(
               configurationFile);
 
-      NamespaceClient namespaceClient = NamespaceClient.create(id, configurationFile, beakerXCommRepository);
+      NamespaceClient namespaceClient = NamespaceClient.create(id, configurationFile, new ClojureBeakerXJsonSerializer(), beakerXCommRepository);
       MagicCommandConfiguration magicConfiguration = new MagicCommandConfigurationImpl(new FileServiceImpl(), new MavenJarResolverServiceImpl(), new MagicCommandAutocompletePatternsImpl());
       ClojureEvaluator evaluator = new ClojureEvaluator(id,
               id,
